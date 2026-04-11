@@ -213,6 +213,10 @@ __marimo__/
 *.obj
 bin/
 
+# Bloqueia arquivos de configuracao soltos de venvs
+pyvenv.cfg
+
 # Ambientes virtuais customizados
 ambiente_dijkstra/
 ambiente_*/
+lib64
