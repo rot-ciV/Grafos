@@ -23,6 +23,7 @@ Para iniciar o algoritmo de Dijkstra:
 
 ### Exemplo de Saída
 
+```text
 Grafos disponíveis no arquivo "grafos.txt":
 1. [Exemplo de Sala]
 2. [Grafo 01]
@@ -47,3 +48,4 @@ Vértice inalcançável a partir da origem.
 Informações do vértice 5:
 Menor distância: 0
 Rota: 5
+```
