@@ -117,25 +117,33 @@ while True:
 grafo_escolhido = grafos_disp[num_grafo - 1]
 lendo_alvo = False
 
+# Lógica para ler o grafo requisitado
 with open('grafos.txt', 'r') as arquivo:
 
     for linha in arquivo:
 
         linha_simples = linha.strip()
         
+        # Pula linha vazia
         if not linha_simples:
             continue
-
+        
+        # Se a linha é um titulo
         if linha_simples.startswith('[') and linha_simples.endswith(']'):
 
+            # E esse for o grafo requisitado
             if linha_simples == grafo_escolhido:
+                # Aciona a flag
                 lendo_alvo = True
                 continue
-
+            
+            # Caso contrário abaixa a flag
             else:
+
                 lendo_alvo = False
                 continue
-
+        
+        # Se a flag estiver acionada, guarde as informações do grafo
         if lendo_alvo:
 
             origem, destino, peso = linha.split()
