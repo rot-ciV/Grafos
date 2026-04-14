@@ -7,7 +7,8 @@ def logica_pert(grafo_utilizado):
 
     tempo_cedo = {}
     grau_de_entrada = {}
-    fila = []
+    fila_cedo = []
+    fila_tarde = []
 
     for vertice_atual in grafo_utilizado.nodes:
 
@@ -15,11 +16,12 @@ def logica_pert(grafo_utilizado):
         grau_de_entrada[vertice_atual] = grafo_utilizado.in_degree[vertice_atual]
 
         if grau_de_entrada[vertice_atual] == 0:
-            fila.append(vertice_atual)
+            fila_cedo.append(vertice_atual)
 
-    while len(fila) > 0:
+    while len(fila_cedo) > 0:
 
-        vertice_processado = fila.pop(0)
+        vertice_processado = fila_cedo.pop(0)
+        fila_tarde.append(vertice_processado)
 
         for vizinho in grafo_utilizado.neighbors(vertice_processado):
 
@@ -33,7 +35,21 @@ def logica_pert(grafo_utilizado):
 
             if grau_de_entrada[vizinho] == 0:
 
-                fila.append(vizinho)
+                fila_cedo.append(vizinho)
+
+    tempo_max = max(tempo_cedo.values())
+    tempo_tarde = {}
+
+    for vertice_atual in grafo_utilizado.nodes:
+
+        if grafo_utilizado.out_degree[vertice_atual] == 0:
+            tempo_tarde[vertice_atual] = tempo_max
+
+        else:
+            tempo_tarde[vertice_atual] = float('inf')
+
+    while(fila_tarde > 0):
+        
 
     return tempo_cedo
 

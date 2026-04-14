@@ -1,4 +1,4 @@
-[EXEMPLO DE AULA]
+[Exemplo de Sala]
 1 2 7
 1 3 5
 2 4 9
@@ -13,7 +13,7 @@
 10 9 0
 9 11 7
 
-[GRAFO 01]
+[Grafo 01]
 1 3 7
 2 4 5
 4 3 0
