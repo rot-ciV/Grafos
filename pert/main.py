@@ -37,6 +37,7 @@ def logica_pert(grafo_utilizado):
 
                 fila_cedo.append(vizinho)
 
+    fila_tarde.reverse()
     tempo_max = max(tempo_cedo.values())
     tempo_tarde = {}
 
@@ -48,10 +49,19 @@ def logica_pert(grafo_utilizado):
         else:
             tempo_tarde[vertice_atual] = float('inf')
 
-    while(fila_tarde > 0):
+    while(len(fila_tarde) > 0):
         
+        vertice_processado = fila_tarde.pop(0)
 
-    return tempo_cedo
+        for predecessor in grafo_utilizado.predecessors(vertice_processado):
+
+            tempo_folga = tempo_tarde[vertice_processado] - grafo_utilizado[predecessor][vertice_processado]['tempo'] 
+
+            if tempo_folga < tempo_tarde[predecessor]:
+
+                tempo_tarde[predecessor] = tempo_folga
+
+    return tempo_cedo, tempo_tarde
 
 
 # ======= Lógica de Leitura do Arquivo grafos.txt ======= #
@@ -130,11 +140,32 @@ with open('grafos.txt', 'r') as arquivo:
 # ======= Lógica de Impressão de Resultados ======= #
 
 
-tempo_cedo = logica_pert(grafo)
+tempo_cedo, tempo_tarde = logica_pert(grafo)
 
 max_tempo = max(tempo_cedo.values())
+caminho_crit = []
+tam = len(caminho_crit)
 
 print('\n=== Resultados ===')
 print(f'\n Tempo máximo: {max_tempo}')
+
+for vertice in grafo.nodes:
+    
+    print(f'Vertice: {vertice}')
+    print(f'Tempo Cedo: {tempo_cedo[vertice]}')
+    print(f'Tempo Tarde: {tempo_tarde[vertice]}\n')
+
+    if tempo_cedo[vertice] - tempo_tarde[vertice] == 0:
+        caminho_crit.append(vertice)
+
+print('Caminho crítico:')
+
+for vertice in caminho_crit:
+    
+    if caminho_crit[tam - 1] == vertice:
+        print(f' {vertice}')
+
+    else:
+        print(f'{vertice} -> ', end='')
 
 
