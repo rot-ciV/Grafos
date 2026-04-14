@@ -3,7 +3,7 @@
  Program Evaluation and Review Technique é uma ferramenta utilizada em gerenciamento de projetos que identifica atividades interdependentes, durações e o "caminho crítico". A sua implementação foi desenvolvida com base no roteiro de aula da Universidade Federal de São João del-Rei (UFSJ). Para a construção da estrutura do vértice, foi utilizada a biblioteca `networkx`. 
 
  **Como adicionar um grafo personalizado:**
-Coloque o nome do novo grafo entre colchetes (ex: `[Grafo Maneiro]`). Nas linhas seguintes, utilize a seguinte lógica para expressar as arestas: `vértice_origem vértice_destino peso`. Cada linha deve representar apenas uma única ligação.
+Coloque o nome do novo grafo entre colchetes (ex: `[Grafo Manei]`). Nas linhas seguintes, utilize a seguinte lógica para expressar as arestas: `vértice_origem vértice_destino peso`. Cada linha deve representar apenas uma única ligação.
 
 
 ## Instruções de Execução
@@ -15,6 +15,7 @@ Para iniciar o algoritmo de Dijkstra:
    ```bash
    python3 main.py
    ```
+
 4. Escolha o número do grafo desejado.
 
 
@@ -24,11 +25,13 @@ Para iniciar o algoritmo de Dijkstra:
 Lista de Grafos disponiveis no arquivo grafos.txt:
 1. [Exemplo de Sala]
 2. [Grafo 01]
+3. [Grafo 02]
 Digite o número do grafo desejado: 2
 
 === Resultados ===
 
- Tempo máximo: 9
+Tempo máximo: 9
+
 Vertice: 1
 Tempo Cedo: 0
 Tempo Tarde: 0

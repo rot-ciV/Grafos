@@ -147,7 +147,7 @@ caminho_crit = []
 tam = len(caminho_crit)
 
 print('\n=== Resultados ===')
-print(f'\n Tempo máximo: {max_tempo}')
+print(f'\nTempo máximo: {max_tempo}\n')
 
 for vertice in grafo.nodes:
     
