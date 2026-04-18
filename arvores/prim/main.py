@@ -6,10 +6,37 @@ grafos_disp = []
 
 def logica_prim(grafo_utilizado):
 
-    return 
+    prim = nx.Graph()
+    vertice_visitados = set()
+    vertice_visitados.add(list(grafo_utilizado.nodes)[0])
+
+    while(len(vertice_visitados) < len(grafo_utilizado.nodes)):
+
+        menor_vizinho = None
+        vertice_do_vizinho = None
+        menor_peso = float('inf')
+
+        for vertice in vertice_visitados:
+
+            for vizinho in grafo_utilizado.neighbors(vertice):
+
+                if vizinho in vertice_visitados:
+                    continue
+
+                if grafo_utilizado[vertice][vizinho]['peso'] < menor_peso:
+                    menor_peso = grafo_utilizado[vertice][vizinho]['peso']
+                    menor_vizinho = vizinho
+                    vertice_do_vizinho = vertice
+
+        
+        vertice_visitados.add(menor_vizinho)
+        prim.add_edge(vertice_do_vizinho, menor_vizinho, peso = int(menor_peso))
+
+    return prim
 
 
 # ======= Lógica de Leitura do Aquivo gragos.txt ======= #
+
 
 with open('grafos.txt', 'r') as arquivo:
 
@@ -52,6 +79,7 @@ while True:
 
 
 # ======= Lógica de Leitura do Grafo Escolhido ======= #    
+
 
 lendo_alvo = False
 
