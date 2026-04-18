@@ -3,7 +3,7 @@
  Program Evaluation and Review Technique é uma ferramenta utilizada em gerenciamento de projetos que identifica atividades interdependentes, durações e o "caminho crítico". A sua implementação foi desenvolvida com base no roteiro de aula da Universidade Federal de São João del-Rei (UFSJ). Para a construção da estrutura do vértice, foi utilizada a biblioteca `networkx`. 
 
  **Como adicionar um grafo personalizado:**
-Coloque o nome do novo grafo entre colchetes (ex: `[Grafo Manei]`). Nas linhas seguintes, utilize a seguinte lógica para expressar as arestas: `vértice_origem vértice_destino peso`. Cada linha deve representar apenas uma única ligação.
+Coloque o nome do novo grafo entre colchetes (ex: `[Grafo Cool]`). Nas linhas seguintes, utilize a seguinte lógica para expressar as arestas: `vértice_origem vértice_destino peso`. Cada linha deve representar apenas uma única ligação.
 
 
 ## Instruções de Execução

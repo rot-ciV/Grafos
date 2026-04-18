@@ -7,6 +7,7 @@ grafos_disp = []
 def logica_prim(grafo_utilizado):
 
     prim = nx.Graph()
+    custo = 0
     vertice_visitados = set()
     vertice_visitados.add(list(grafo_utilizado.nodes)[0])
 
@@ -31,8 +32,9 @@ def logica_prim(grafo_utilizado):
         
         vertice_visitados.add(menor_vizinho)
         prim.add_edge(vertice_do_vizinho, menor_vizinho, peso = int(menor_peso))
+        custo = custo + menor_peso
 
-    return prim
+    return prim, custo
 
 
 # ======= Lógica de Leitura do Aquivo gragos.txt ======= #
@@ -96,6 +98,7 @@ with open('grafos.txt', 'r') as arquivo:
 
             if linha_simples == grafos_disp[grafo_escolhido]:
                 lendo_alvo = True
+                continue
 
             else:
                 lendo_alvo = False
@@ -105,5 +108,17 @@ with open('grafos.txt', 'r') as arquivo:
 
             origem, destino, peso = linha.split()
             grafo.add_edge(origem, destino, peso = int(peso))
+
+
+# ======= Lógica de Impressão do Prim ======= #  
+
+
+prim, custo = logica_prim(grafo) 
+
+for origem, destino, informacao in prim.edges(data=True):
+
+    print(f'{origem} <----> {destino} | Custo: {informacao["peso"]}')
+
+print(f'Custo total: {custo}')
 
 
