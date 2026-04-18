@@ -115,10 +115,11 @@ with open('grafos.txt', 'r') as arquivo:
 
 prim, custo = logica_prim(grafo) 
 
+print(f'\nCusto total: {custo}')
+print('-' * 23)
+
 for origem, destino, informacao in prim.edges(data=True):
 
     print(f'{origem} <----> {destino} | Custo: {informacao["peso"]}')
 
-print(f'Custo total: {custo}')
-
-
+print('-' * 23)
