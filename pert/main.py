@@ -79,13 +79,13 @@ with open('grafos.txt', 'r') as arquivo:
             grafos_disp.append(linha_simples)
 
 if len(grafos_disp) == 0:
-    sys.exit('Nenhum grafo foi encontrado.')
+    sys.exit('\nNenhum grafo foi encontrado.')
 
 
 # ======= Lógica de Escolha do Grafo ======= #
 
 
-print('Lista de Grafos disponiveis no arquivo grafos.txt:')
+print('\nLista de Grafos disponiveis no arquivo grafos.txt:')
 
 for indice, nome in enumerate(grafos_disp):
 
@@ -95,7 +95,7 @@ while True:
 
     try:
 
-        grafo_escolhido = int(input('Digite o número do grafo desejado: ')) - 1
+        grafo_escolhido = int(input('\nDigite o número do grafo desejado: ')) - 1
 
         if grafo_escolhido < 0 or grafo_escolhido >= len(grafos_disp):
             print('Opção Inválida')
@@ -111,9 +111,9 @@ while True:
 # ======= Lógica de Leitura do Grafo Escolhido ======= #
 
 
-lendo_alvo = False
-
 with open('grafos.txt', 'r') as arquivo:
+
+    lendo_alvo = False
 
     for linha in arquivo:
 
@@ -163,7 +163,7 @@ print('Caminho crítico:')
 for vertice in caminho_crit:
     
     if caminho_crit[tam - 1] == vertice:
-        print(f' {vertice}')
+        print(f'{vertice}\n')
 
     else:
         print(f'{vertice} -> ', end='')

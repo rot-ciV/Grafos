@@ -26,6 +26,7 @@ Lista de Grafos disponiveis no arquivo grafos.txt:
 1. [Exemplo de Sala]
 2. [Grafo 01]
 3. [Grafo 02]
+
 Digite o número do grafo desejado: 2
 
 === Resultados ===
@@ -53,5 +54,5 @@ Tempo Cedo: 9
 Tempo Tarde: 9
 
 Caminho crítico:
-1 -> 3 ->  5
+1 -> 3 -> 5
 ```
