@@ -52,13 +52,13 @@ with open('grafos.txt', 'r') as arquivo:
 
 
 if len(grafos_disp) == 0:
-    sys.exit('Não há grafos disponíveis no arquivo "grafos.txt"')
+    sys.exit('\nNão há grafos disponíveis no arquivo "grafos.txt"')
 
 
 # ======= Lógica de Escolha do grafo ======= #
 
 
-print('Grafos disponíveis no arquivo "grafos.txt":')
+print('\nGrafos disponíveis no arquivo "grafos.txt":')
 
 for indice, nome in enumerate(grafos_disp):
     print(f'{indice + 1}. {nome}')
@@ -68,7 +68,7 @@ while True:
 
     try:
 
-        grafo_escolhido = int(input('Digite o número do grafo desejado: ')) -1
+        grafo_escolhido = int(input('\nDigite o número do grafo desejado: ')) -1
 
         if grafo_escolhido < 0 or grafo_escolhido >= len(grafos_disp):
             print('Opção Inválida')
@@ -83,9 +83,9 @@ while True:
 # ======= Lógica de Leitura do Grafo Escolhido ======= #    
 
 
-lendo_alvo = False
-
 with open('grafos.txt', 'r') as arquivo:
+
+    lendo_alvo = False
 
     for linha in arquivo:
 
@@ -112,14 +112,14 @@ with open('grafos.txt', 'r') as arquivo:
 
 # ======= Lógica de Impressão do Prim ======= #  
 
-
 prim, custo = logica_prim(grafo) 
 
-print(f'\nCusto total: {custo}')
+print('\n----- RESULTADOS -----\n')
+print(f'Custo total: {custo}')
 print('-' * 23)
 
 for origem, destino, informacao in prim.edges(data=True):
 
     print(f'{origem} <----> {destino} | Custo: {informacao["peso"]}')
 
-print('-' * 23)
+print('-' * 23  + '\n')
