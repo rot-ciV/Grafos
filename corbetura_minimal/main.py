@@ -1,6 +1,6 @@
 import networkx as nx
 import random
-
+import time
 class Individuo:
     def __init__(self, dna):
         self.fitness = 0
@@ -50,9 +50,10 @@ def criaDNA(Grafo):
 def calculaFitness(individuo, Grafo):
 
     grafo_aux = Grafo.copy()
-    flag = 1
     gene_atual = 0
     fitness = 0
+
+    individuo.esquinas_com_camera_ind.clear()
 
     while(grafo_aux.number_of_edges() > 0):
         
@@ -128,15 +129,20 @@ caminho_arquivo = "sjdr.gml"
 Grafo = nx.read_gml(caminho_arquivo)
 grafo_limpo = Grafo.copy()
 cameras_base = limpaGrafo(grafo_limpo)
-esquinas_com_camera = set()
 
-numero_de_testes = 100
+melhor_fitness = float('inf')
+melhor_individuo = None
+cobertura_camera = {}
+
+numero_de_testes = 10
+
+tempo_inicio = time.time()
+
 with open("tabela_de_resultados.txt", "w") as arquivo:
     
     arquivo.write("===== RESULTADOS DA BATERIA =====\n")
 
     for teste in range(numero_de_testes):
-
 
         populacao = []
 
@@ -177,11 +183,64 @@ with open("tabela_de_resultados.txt", "w") as arquivo:
 
             populacao = nova_populacao
 
-
+        
         populacao.sort(key=lambda ind: ind.fitness)
         mais_apto = populacao[0]
         total_cameras = mais_apto.fitness + len(cameras_base)
+
+        if total_cameras < melhor_fitness:
+
+            melhor_fitness = total_cameras
+            melhor_individuo = mais_apto
+
         linha_resultado = f"Teste {teste + 1:02d}: {total_cameras} cameras\n"
         arquivo.write(linha_resultado)
         print(f"Teste {teste + 1:02d} concluído com {total_cameras} câmeras.")
+    
+    loc_cameras = melhor_individuo.esquinas_com_camera_ind.union(cameras_base)
+
+    tempo_fim = time.time()
+
+    tempo_total = tempo_fim - tempo_inicio
+    minutos = int(tempo_total // 60)
+    segundos = int(tempo_total % 60)
+
+    print(f'O programa demorou {minutos} minuto(s) e {segundos} segundo(s) para concluir a bateria.\n')
+    
+    for camera_atual in loc_cameras:
+
+            ruas_camera_atual = set()
+
+            for vizinho in Grafo.neighbors(camera_atual):
+
+                rua = Grafo[camera_atual][vizinho]
+                nome_rua = rua.get('name')
+
+                if isinstance(nome_rua, list):
+                    ruas_camera_atual.update(nome_rua)
+                
+                else:
+                    ruas_camera_atual.add(nome_rua)
+
+            cobertura_camera[camera_atual] = list(ruas_camera_atual)
+
+
+with open("relatorio_cameras", "w", encoding="utf-8") as arquivo:
+
+    arquivo.write("Segue a relação de quais ruas cada câmera está monitorando.\n\n")
+
+    for camera, ruas in cobertura_camera.items():
+        
+        arquivo.write(f"Camera na esquina [{camera}] monitora as seguinte(s) rua(s):\n")
+
+        for rua in ruas:
+
+            arquivo.write(f'- {rua}\n')
+
+        arquivo.write('\n')
+
+
+    
+
+
     
