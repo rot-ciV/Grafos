@@ -35,6 +35,8 @@ while(indice < len(posicoes)):
 
 # ===== Impressao dos Resultados ===== #
 
+print('\n=========== RESULTADO ===========\n')
+
 num_resultados = len(pos_rainha) // 8
 
 for linha in range (8):
@@ -53,3 +55,4 @@ for linha in range (8):
             desenho_linha += '[ ] '
 
     print(desenho_linha)
+print()
